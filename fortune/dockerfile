@@ -1,6 +1,0 @@
-FROM debian
-
-RUN apt-get update \
-			&& apt-get install -y fortune
-COPY webpage.sh /
-CMD ["bash", "/webpage.sh"]
