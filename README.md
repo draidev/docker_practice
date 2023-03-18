@@ -51,3 +51,24 @@ deploy:
     }
 }
 ```
+
+### docker compose ls   
+Docker Compose 파일에 정의된 모든 서비스를 나열하는 데 사용됩니다. 서비스 이름, 서비스를 시작하는 데 사용된 명령 및 노출된 포트와 같은 정보를 표시합니다. 이 명령은 Compose 파일에 정의된 모든 서비스의 상태를 확인하는 데 유용합니다. 실제로 일부 서비스가 실행되고 있지 않더라도 모든 서비스를 나열할 수 있습니다.   
+- 전체 Docker Compose 프로젝트에 대한 이름을 지정하기 위해서는 ```-p``` 또는 ```--project-name``` 옵션을 ```docker-compose``` 명령어와 함께 사용해야 합니다.   
+- 이는 ```docker-compose.yml```파일의 ‘services’위에 ‘name’옵션을 사용하는 것과 동일합니다.   
+```
+version: "3.9"
+
+name: project-name
+
+services:
+  sndr_0:
+    image: "sample:image"
+    restart: always
+    hostname: root
+    container_name: sample
+    deploy:
+      resources:
+        limits:
+          memory: 150G
+```   
