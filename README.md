@@ -76,7 +76,7 @@ services:
 <br>
 
 ### docker container 내에서 systemd 활용하기   
-기본적으로 Docker는 운영 체제의 프로세스 관리자(systemd, upstart 등)를 지원하지 않습니다. 그러나 일부 컨테이너 OS 이미지(예: Ubuntu)는 systemd를 포함하고 있으며, 이러한 이미지에서는 systemd를 사용할 수 있다.   
+기본적으로 Docker는 운영 체제의 프로세스 관리자(systemd, upstart 등)를 지원하지 않는다. 그러나 일부 컨테이너 OS 이미지(예: Ubuntu)는 systemd를 포함하고 있으며, 이러한 이미지에서는 systemd를 사용할 수 있다.   
 
 systemd를 사용하려면 다음과 같은 조치가 필요하다.    
 
@@ -89,8 +89,9 @@ RUN apt-get update && apt-get install -y systemd
 ```
 docker run -it --rm --privileged --pid=host <image-name>
 ```   
---privileged : 컨테이너가 호스트의 모든 기능에 액세스 할 수 있도록 한다.   
---pid=host : 컨테이너에서 호스트의 프로세스 트리를 볼 수 있도록 한다.   
+```--rm``` : 컨테이너를 일회성으로 실행할 때 주로 쓰인다. 컨테이너가 종료될 때 컨테이너와 관련된 리소스(파일 시스템, 볼륨)까지 깨끗이 제거해준다.   
+```--privileged``` : 컨테이너가 호스트의 모든 기능에 액세스 할 수 있도록 한다.   
+```--pid=host``` : 컨테이너에서 호스트의 프로세스 트리를 볼 수 있도록 한다.   
 
 이후에 systemd를 시작하고 서비스를 관리 할 수 있다. 하지만 이렇게 **systemd를 사용하는 것은 보안상의 이유로 권장되지 않는다**.  컨테이너에 대한 운영 체제 관리 작업은 가능한한 수행하지 않는 것이 좋다. 대신에 Docker의 컨테이너 관리 기능을 사용하는 것이 좋다.   
 
