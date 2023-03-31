@@ -8,7 +8,19 @@ https://splendid-letter-5a5.notion.site/Docker-005ccbde6d804fdeb2b785a009f6f0cf
   도커에서 서비스 운영에 필요한 서버 프로그램, 소스코드 및 라이브러리, 컴파일된 실행 파일을 묶는 형태를 Docker Image라한다. 다시 말해, 특정 프로세스를 실행하기 위한(즉, 컨테이너 생성(실행)에 필요한) 모든 파일과 설정값(환경)을 지닌 것으로, 더 이상의 의존성 파일을 컴파일하거나 이것저것 설치할 필요 없는 상태의 파일을 의미한다.
 <br>   
 ## Docker Container
-이미지(Image)를 실행한 상태로, 응용프로그램의 종속성과 함께 응용프로그램 자체를 패키징 or 캡슐화하여 격리된 공간에서 프로세스를 동작시키는 기술이다.
+이미지(Image)를 실행한 상태로, 응용프로그램의 종속성과 함께 응용프로그램 자체를 패키징 or 캡슐화하여 격리된 공간에서 프로세스를 동작시키는 기술이다.   
+
+
+## docker configure
+**daemon.json**
+- 경로 : /etc/docker/daemon.json   
+
+### 도커 이미지 배포할때 설정파일이 볼륨으로 잡혀있는 경우 최신 conf파일로 업데이트 되지 않는 문제   
+- 새로운 버전의 docker image로 update했을때 container를 up하면 기존의 호스트 conf경로 volume을 바라봄    
+	- 따라서 이전 버전의 conf를 보고있음   
+- 이럴 경우 docker 컨테이너를 Created 상태로 띄어 놓고 container내의 conf파일을 docker cp 명령어로 host conf경로에 복사한 뒤 컨테이너를 띄우면 바뀐 설정파일을 바라본다.   
+```docker cp ($docker create [컨테이너]):[컨테이너 conf 파일 경로] [host conf 파일 경로]```   
+
 
 
 ## Dockerfile 이란?
