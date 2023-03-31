@@ -19,7 +19,7 @@ https://splendid-letter-5a5.notion.site/Docker-005ccbde6d804fdeb2b785a009f6f0cf
 - 새로운 버전의 docker image로 update했을때 container를 up하면 기존의 호스트 conf경로 volume을 바라봄    
 	- 따라서 이전 버전의 conf를 보고있음   
 - 이럴 경우 docker 컨테이너를 Created 상태로 띄어 놓고 container내의 conf파일을 docker cp 명령어로 host conf경로에 복사한 뒤 컨테이너를 띄우면 바뀐 설정파일을 바라본다.   
-```docker cp ($docker create [컨테이너]):[컨테이너 conf 파일 경로] [host conf 파일 경로]```   
+```docker cp $(docker create [이미지 이름] -name [컨테이너 이름]):[컨테이너 conf 파일 경로] [host conf 파일 경로]```   
 
 
 
